@@ -1,0 +1,21 @@
+{
+  "name": "vetguard-backend",
+  "version": "1.0.0",
+  "description": "Backend for VetGuard Solutions website",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": ["veterinary", "appointments", "newsletter"],
+  "author": "VetGuard Team",
+  "license": "MIT"
+}

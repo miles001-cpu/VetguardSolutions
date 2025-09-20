@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetGuard Admin</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .section { margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        button { margin: 5px; padding: 5px 10px; }
+    </style>
+</head>
+<body>
+    <h1>VetGuard Solutions Admin Panel</h1>
+    
+    <div class="section">
+        <h2>Appointments <button onclick="loadAppointments()">Refresh</button></h2>
+        <table id="appointments-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Message</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    
+    <div class="section">
+        <h2>Newsletter Subscribers <button onclick="loadSubscribers()">Refresh</button></h2>
+        <table id="subscribers-table">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    
+    <script>
+        // Load and display data from backend
+        async function loadAppointments() {
+            try {
+                const response = await fetch('/api/appointments');
+                const appointments = await response.json();
+                const appointmentsBody = document.querySelector('#appointments-table tbody');
+                appointmentsBody.innerHTML = '';
+                
+                appointments.forEach(apt => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${apt.name || 'N/A'}</td>
+                        <td>${apt.email || 'N/A'}</td>
+                        <td>${apt.phone || 'N/A'}</td>
+                        <td>${apt.serviceType || 'N/A'}</td>
+                        <td>${apt.appointmentDate || 'N/A'}</td>
+                        <td>${apt.message || 'N/A'}</td>
+                        <td>${new Date(apt.timestamp).toLocaleString()}</td>
+                    `;
+                    appointmentsBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error loading appointments:', error);
+            }
+        }
+        
+        async function loadSubscribers() {
+            try {
+                const response = await fetch('/api/subscribers');
+                const subscribers = await response.json();
+                const subscribersBody = document.querySelector('#subscribers-table tbody');
+                subscribersBody.innerHTML = '';
+                
+                subscribers.forEach(email => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `<td>${email}</td>`;
+                    subscribersBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error loading subscribers:', error);
+            }
+        }
+        
+        // Load data when page is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAppointments();
+            loadSubscribers();
+        });
+    </script>
+</body>
+</html>

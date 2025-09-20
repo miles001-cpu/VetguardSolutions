@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1758404196314,
+    "timestamp": "2025-09-20T21:36:36.268Z",
+    "name": "amos",
+    "email": "amosndungu2723@gmail.com",
+    "phone": "0759412978",
+    "serviceType": "Reproductive Health & Breeding",
+    "appointmentDate": "2025-09-22",
+    "message": "sss"
+  },
+  {
+    "id": 1758404355246,
+    "timestamp": "2025-09-20T21:39:15.242Z",
+    "name": "john doe",
+    "email": "johndoe@gmail.com",
+    "phone": "0712578027",
+    "serviceType": "General Checkup",
+    "appointmentDate": "2025-09-22",
+    "message": "its just a cat"
+  }
+]
